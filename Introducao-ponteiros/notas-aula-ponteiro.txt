@@ -1,0 +1,48 @@
+Estrutura de Dados 
+
+Ponteiros:
+
+A memória do computador é um conjunto de bits
+(1 byte = 8 bits)
+
+EDEREÇO = PONTEIRO (trate sempre como isso)
+
+O posicionamento exato na memória de determinada variável e o valor que está dentro da memória
+(valor atribuido aquela variável)
+
+Se eu quiser ter acesso aquela variável só colocar o &.
+
+Variáveis do tipo ponteiro:
+Se ela é um ponteiro eu tenho que explicar e colocar um * antes
+
+O tipo da variável ponteiro -> Você aponta para o endereço da memória, onde lá dentro vai ter
+um inteiro armazenado 
+
+O ponteiro aponta para o inicio da variável(cabeça)
+Se eu chegar em um endereço onde possui um inteiro, eu vou contar a partir daquela posição
+os próximos quatro espaços
+
+Apontadores:
+
+Se eu quiser fazer uma atribuição para meu ponteiro, precisa ser um endereço.
+
+pi = &x;
+
+Se eu disser que meu ponteiro vai apontar para um endereço que tem um inteiro e chego lá 
+tem um double, ele só vai pegar os 4 primeirs bits. (Conversão Explícita).
+
+O CONTEÚDO DE UM PONTEIRO É SEU ENDEREÇO
+
+Atribuição de ' * ' -> Essa variável é um ponteiro e eu acesso o conteúdo que está dentro daquele
+ponteiro
+
+(*pi + 1) != *(pi + 1)
+
+Temos que isso é verdadeiro pois, de um lado o ponteiro referência para um endereço cujo conteúdo
+é 4 e n outro ele pega a posição de memória de pi e avança uma casa, sendo 10 o resultado. 
+
+int x = 4;
+*pi = &x;
+*pi = 5;
+
+Então  como meu ponteiro está referenciando ao conteúdo de x. X agora será 5.
