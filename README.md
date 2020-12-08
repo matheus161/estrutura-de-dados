@@ -5,3 +5,4 @@ Respositório contendo o conteúdo e exercícios da disciplina 'Estrutura de dad
 - Realloc
 - Notas-aula
 - Exercícios(1 a 5)
+- Fila

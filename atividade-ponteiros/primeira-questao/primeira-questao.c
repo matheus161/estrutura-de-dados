@@ -8,13 +8,14 @@ int main(void) {
     // y++;
     // (*p)++;
     // (*p) += x;
-    x = p + 3;
+    // x = p + 3;
 
     // Endereço de y = 6422292
     printf("p: %d \n", p);
-    printf("y: %d \n", y);
+    printf("&p: %d \n", &p);
+    // printf("y: %d \n", y);
+    printf("&y: %d \n", &y);
     printf("x: %d \n", x);
-    printf("*p: %d \n", *p);
-
+    // printf("*p: %d \n", *p);
 
 }
