@@ -15,7 +15,7 @@ int insere_Pilha(Pilha* pi, struct carro carro);
 
 int remove_Pilha(Pilha* pi, int placa);
 
-/*------------ FILA ------------ */
+/*------------ Lista Funcionários ------------ */
 #define N 3
 struct funcionario
 {

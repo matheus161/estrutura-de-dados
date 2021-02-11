@@ -16,7 +16,7 @@ void emOrdem_ArvBin(ArvBin *raiz);
 
 void posOrdem_ArvBin(ArvBin *raiz);
 
-int insere_ArvBin(ArvBin *raiz);
+int insere_ArvBin(ArvBin *raiz, int valor);
 
 int remove_ArvBin(ArvBin *raiz, int valor);
 

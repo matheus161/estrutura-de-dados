@@ -1,9 +1,10 @@
-Respositório contendo o conteúdo e exercícios da disciplina 'Estrutura de dados'.
+Respositório com os conteúdos e exercícios da disciplina 'Estrutura de dados'.
 
 /* Material baseado no canal Linguagem C  Programação Descomplicada */
-- Parei: Aula 78
+- Parei: Aula 98
 
 - Introduçao
+- Ponteiros
 - Calloc
 - Realloc
 - Notas-aula
@@ -11,4 +12,8 @@ Respositório contendo o conteúdo e exercícios da disciplina 'Estrutura de dad
 - Fila
 - Lista
 - Pilha
-- Árvores
+- Árvores {
+    Binária
+    AVL
+}
+- Tabela Hash

@@ -126,7 +126,7 @@ void posOrdem_ArvBin(ArvBin *raiz){
 }
 
 //Inserindo
-int insere_ArvBinO(ArvBin *raiz, int valor){
+int insere_ArvBin(ArvBin *raiz, int valor){
     if(raiz == NULL)
         return 0;
     struct NO* novo;
@@ -167,30 +167,32 @@ int insere_ArvBinO(ArvBin *raiz, int valor){
 
 //Removendo
 int remove_ArvBin(ArvBin *raiz, int valor){
-    if(raiz = NULL) return 0;
+    if(raiz == NULL) return 0;
     struct NO* ant = NULL;
     struct NO* atual = *raiz;
     //quando achar nó a ser removido. Tratar o lado da remoção
-    while (atual != NULL)
-    {
-        if(valor = atual->info)
-            *raiz = remove_atual(atual);
-        else {
-            if(ant->dir == atual)
-                ant->dir = remove_atual(atual);
-            else 
-                ant->esq = remove_atual(atual);
+    while (atual != NULL) {
+        if(valor == atual->info) {
+            if(atual == *raiz)
+                *raiz = remove_atual(atual);
+            else {
+                if(ant->dir == atual)
+                    ant->dir = remove_atual(atual);
+                else
+                    ant->esq = remove_atual(atual);
+            }
+            return 1;
         }
-        return 1;
+        //continua andando na árvore a procura do nó a ser removido
+        //troco meu atual por outro valor a depender do que eu estou buscando 
+        ant = atual;
+        if(valor > atual->info)
+            atual = atual->dir;
+        else
+            atual = atual->esq; 
     }
-    //continua andando na árvore a procura do nó a ser removido 
-    ant = atual;
-    if(valor > atual->info)
-        atual = atual->dir;
-    else 
-        atual = atual->esq;
-    
 }
+
 //tratamento da remoção(são 3 tipos)
 struct NO* remove_atual(struct NO* atual) {
     struct NO *no1, *no2;
@@ -219,9 +221,9 @@ struct NO* remove_atual(struct NO* atual) {
     return no2;    
 };
 
-//Conulta
+//Consulta
 int consulta_ArvBin(ArvBin *raiz, int valor){
-    if(raiz = NULL)
+    if(raiz == NULL)
         return 0;
     struct NO* atual = *raiz;
     while (atual != NULL){
@@ -240,16 +242,17 @@ int consulta_ArvBin(ArvBin *raiz, int valor){
 
 //Programa principal 
 int main(){
-    ArvBin*  raiz; //ponteiro para ArvBin(ponteiro para ponteiro)
+    // ArvBin*  raiz; //ponteiro para ArvBin(ponteiro para ponteiro)
     ArvBin* raiz = cria_ArvBin();
-    libera_ArvBin(raiz);
-    int x = estaVazia_ArvBin(raiz);
-    if(estaVazia_ArvBin(raiz));
-    int x = altura_ArvBin(raiz);
-    int x = totalNO_ArvBin(raiz);
-    preOrdem_Arvbin(raiz);
-    emOrdem_Arvbin(raiz);
+    // libera_ArvBin(raiz);
+    // int x = estaVazia_ArvBin(raiz);
+    // if(estaVazia_ArvBin(raiz));
+    // int x = altura_ArvBin(raiz);
+    // int x = totalNO_ArvBin(raiz);
+    // preOrdem_Arvbin(raiz);
+    // emOrdem_Arvbin(raiz);
     //int x = insere_ArvBin(raiz, valor);
     //int x = remove_ArvBin(raiz, valor);
     //int x = consulta_ArvBin(raiz, valor);
+    insere_ArvBin(raiz,10);
 }
