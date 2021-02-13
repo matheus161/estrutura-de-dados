@@ -54,14 +54,35 @@ int insere_lista_final_carro(Lista_carro* li, struct carro_lista car);
 
 int remove_Lista_manobrista(Lista_carro* li_carro, Lista_func* li_func, int placa_posicao, struct carro_lista car, struct funcionario func, int var );
 
+
 /*------------ Árvore Binária ------------ */
 typedef struct NO* ArvBin;
 
 ArvBin* cria_ArvBin();
 
-int insere_ArvBin(ArvBin *raiz, int valor);
+int insere_ArvBin(ArvBin *raiz, struct carro_lista car);
 
-ArvBin* remove_ArvBin(ArvBin *raiz, int valor);
+int remove_ArvBin(ArvBin *raiz, struct carro_lista car);
 
-int consulta_ArvBin(ArvBin *raiz, int valor);
+int consulta_ArvBin(ArvBin *raiz, struct carro_lista car);
 
+
+/*------------ Fila de Carros ------------ */
+typedef struct elemento* Lista;
+
+Lista* cria_lista_din();
+
+int insere_lista_inicio_din(Lista* li, struct carro_lista car);
+
+int remove_lista_din(Lista* li, struct carro_lista car);
+
+int consulta_lista_din(Lista* li, struct carro_lista car);
+
+/*---------- TABELA HASH ----------*/
+typedef struct hash Hash;
+
+Hash* criaHash(int TABLE_SIZE);
+
+int insereHash_EnderAberto(Hash* ha, struct carro_lista car);
+
+int buscaHash_EnderAberto(Hash* ha, int placa, struct carro_lista car);

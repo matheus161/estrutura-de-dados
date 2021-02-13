@@ -3,6 +3,7 @@
         "stdlib.h": "c",
         "estacionamento2.h": "c",
         "string.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "teste.h": "c"
     }
 }

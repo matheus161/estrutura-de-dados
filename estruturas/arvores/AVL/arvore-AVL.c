@@ -15,7 +15,7 @@
 
 struct NO{
     int info;
-    int alt;
+    int alt;//altura daquela sub-árvore
     struct NO *esq;
     struct NO *dir;
 };
@@ -41,7 +41,7 @@ int maior(int x, int y) {
         return y;
 }
 
-//Rotação 
+//Rotação Simples à direita(Inserido na sub-árvore da esquerda - left-left)
 void RotacaoLL(ArvAVL *raiz) {
     struct NO *no;
     no = (*raiz)->esq;
@@ -52,6 +52,7 @@ void RotacaoLL(ArvAVL *raiz) {
     *raiz = no;
 }
 
+//Rotação Simples à esquerda(Inserido na sub-árvore da direita - right-right)
 void RotacaoRR(ArvAVL *raiz) {
     struct NO *no;
     no = (*raiz)->dir;
@@ -62,11 +63,13 @@ void RotacaoRR(ArvAVL *raiz) {
     (*raiz) = no;
 }
 
+//Rotação Dupla à esquerda (inserido na esquerda e depois na direita)
 void RotacaoLR(ArvAVL *raiz) {
     RotacaoLR(&(*raiz)->esq);
     RotacaoLL(raiz);
 }
 
+//Rotação Dupla à direita (inserindo na direita e dpois na esquerda)
 void RotacaoRL(ArvAVL *raiz) {
     RotacaoLL(&(*raiz)->esq);
     RotacaoRR(raiz);
