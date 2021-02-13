@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "estacionamento-novo.h"
 
-int * contArvBin, portaoArvbin, contLista, portaoLista, contHash, portaoHash;
+float contArvBin, portaoArvbin, contLista, portaoLista, contHash, portaoHash, totalLista, totalArvBin, totalHash;
 /*---------- LISTA DE FUNCIONÁRIOS ----------*/ 
 //Lista de funcionários
 struct lista_func{
@@ -294,7 +294,7 @@ int remove_Lista_manobrista(Lista_carro* li_carro, Lista_func* li_func, int plac
     return 1;
 }
 
-/*---------- FILA DE CARROS ----------*/
+/*---------- LISTA DINAMICA DE CARROS ----------*/
 struct elemento{
     struct carro_lista dados;
     struct elemento *prox;
@@ -346,6 +346,7 @@ int remove_lista_din(Lista* li, struct carro_lista car){
 int consulta_lista_din(Lista* li, struct carro_lista car){
     if (li == NULL ) return 0;
     Elem* no = *li;
+    contLista = 0;
     while (no != NULL && no->dados.placa != car.placa){
         contLista++;
         no = no->prox;
@@ -354,6 +355,7 @@ int consulta_lista_din(Lista* li, struct carro_lista car){
     if (no == NULL)
         return 0;
     else {
+        contLista++;
         car = no->dados;
         return 1;
     }
@@ -369,6 +371,7 @@ struct hash {
 
 Hash* criaHash(int TABLE_SIZE) {
     Hash* ha = (Hash*)malloc(sizeof(Hash));
+    contHash = 0;
     if(ha != NULL) {
         int i;
         ha->TABLE_SIZE = TABLE_SIZE;
@@ -519,7 +522,6 @@ int main(){
             insere_ArvBin(raiz, car2[l]);
             insere_lista_inicio_din(li_din, car2[l]);
             insereHash_EnderAberto(hash, car2[l]);
-            // printf("PLACA DO CARRO QUE ENTROU %d \n", car[l].placa);
             printf("O carro %c entrou. Total = %d \n", car2[l].name, var2 + 1); 
             var2++;
         }
@@ -527,44 +529,52 @@ int main(){
         for (m; m < aux2; m++) {                    
             if (car2[m].placa == car2[y].placa && acum2 < 300)
             {   
-                contLista = 0;                                 
+                totalLista = contLista + totalLista;
+                totalArvBin = contArvBin + totalArvBin;
+                totalHash = contHash + totalHash;
+                contLista = 0, contArvBin = 0, contHash = 0;                                 
                 printf("Carro %c devera sair. \n", car2[m].name);
-                // printf("Eu passei %d \n", car2[m].placa);
                 remove_Lista_manobrista(li_carro,li, y, car2[m], fun[MAX], aux2);
                 remove_ArvBin(raiz, car2[m]);
                 remove_lista_din(li_din, car2[m]);
                 buscaHash_EnderAberto(hash, car2[m].placa, car2[m]);
-                if (contArvBin > (qtd/2))
+                if (contArvBin > 1)
                 {
                     portaoArvbin = 2;
                 } else {
                     portaoArvbin = 1;
                 }
-                if (contLista > (qtd/2))
+                if (contLista > 1)
                 {
                     portaoLista = 2;
                 } else {
                     portaoLista = 1;
                 }
-                if (contHash > (qtd/2))
+                if (contHash > 1)
                 {
                     portaoHash = 2;
                 } else {
                     portaoHash = 1;
                 }
-                //TESTAR AS COMPARAÇÕES
-                printf("Foram feitas %d comparacao(oes) com Lista Encadeada e deve sair pelo portao: %d \n", contLista, portaoLista);
-                printf("Foram feitas %d comparacao(oes) com Arvore Binaria e deve sair pelo portao: %d \n", contArvBin, portaoArvbin);
-                printf("Foram feitas %d comparacao(oes) com Tabela Hash e deve sair pelo portao: %d \n", contHash, portaoHash);
                 acum2 = (car2[m].horas*12) + acum2;
-                printf("Valor pago %.0f\n", acum2);                                     
+                printf("Valor pago %.0f\n", acum2);
+                printf("Foram feitas %.0f comparacao(oes) com Lista Encadeada e deve sair pelo portao: %.0f \n", contLista, portaoLista);
+                printf("Foram feitas %.0f comparacao(oes) com Arvore Binaria e deve sair pelo portao: %.0f \n", contArvBin, portaoArvbin);
+                printf("Foram feitas %.0f comparacao(oes) com Tabela Hash e deve sair pelo portao: %.0f \n", contHash, portaoHash);                                     
             }
             y++;
         }
             teste = l + 3;
             aux2 = l + 3;
     } while (acum2 < 300); 
-    
+
+    printf("O total de comparacoes na lista foram: %.0f\n", totalLista);
+    printf("O total de comparacoes na arvore foram: %.0f\n", totalArvBin);
+    printf("O total de comparacoes na tabela foram: %.0f\n", totalHash);
+    printf("A media de comparacoes com Lista Encadeada foram: %.2f\n", totalLista/qtd);
+    printf("A media de comparacoes com Arvore Binaria foram: %.2f\n ", contArvBin/qtd);
+    printf("A media de comparacoes com Tabela Hash foram: %.2f\n", contArvBin/qtd, contLista);
+
     free(pi);
     free(li_carro);
     free(li);
